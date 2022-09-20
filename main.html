@@ -20,11 +20,11 @@
               <select id="states">
                 <option value="1">Test</option>
               </select>
-              <button class="dropbtn" id="stateButton">State</button>
             </div>
             <br>
             <br>
             <br>
+            <h2>Add country</h2>
             <div class="countryFormClass">
               <form id="countryForm" method="POST">
                 <label for="ccode">Country Code:</label><br>
@@ -32,6 +32,23 @@
                 <label for="cname">Country Name:</label><br>
                 <input type="text" id="cname" name="cname" value="" required><br><br>
                 <input type="submit" value="Add Country" id="addCountryButton">
+              </form> 
+            </div>
+            <br>
+            <br>
+            <br>
+            <h2>Add State</h2>
+            <div class="stateFormClass">
+              <form id="stateForm" method="POST">
+                <label for="scode">State Code:</label><br>
+                <input type="text" id="scode" name="scode" value="" required><br>
+                <label for="sname">State Name:</label><br>
+                <input type="text" id="sname" name="sname" value="" required><br><br>
+                <label for="country_id">Country ID:</label><br>
+                <select id="country_id">
+                  <option value="1">Select Number</option>
+                </select>
+                <input type="submit" value="Add State" id="addCountryButton">
               </form> 
             </div>
         </body>
