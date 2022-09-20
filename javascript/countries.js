@@ -19,6 +19,8 @@ $(document).ready(function(){
         })
     });
 
+    //if countryButton is clicked, get the currently selected country id, and get the corresponding country's states as a JSON
+    //after this, populate the dropdown list with the states
     $('#countryButton').click(function(){
         stateDropdown.empty();
         let countryID = $('#countries option:selected').attr('id');
@@ -28,6 +30,13 @@ $(document).ready(function(){
             $.each(data, function (key, entry) {
                 stateDropdown.append($('<option></option>').attr('id', entry.id).text(entry.name));
                 })
+            });
+    })
+
+    $('#addCountryButton').click(function(){
+        console.log('I did something');
+        $.getJSON("https://xc-countries-api.herokuapp.com/api/countries/", function(data){
+            console.log(data);
             });
     })
 
