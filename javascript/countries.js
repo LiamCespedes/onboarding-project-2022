@@ -33,12 +33,27 @@ $(document).ready(function(){
             });
     })
 
-    $('#addCountryButton').click(function(){
-        console.log('I did something');
-        $.getJSON("https://xc-countries-api.herokuapp.com/api/countries/", function(data){
-            console.log(data);
-            });
-    })
+    $( "#countryForm" ).submit(function(e) {
+        e.preventDefault();
+        var countryCode = $('#ccode').val();
+        var countryName = $('#cname').val();
+        console.log(countryCode);
+        console.log(countryName);
+        
 
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", "https://xc-countries-api.herokuapp.com/api/countries/");
 
+        xhr.setRequestHeader("Accept", "application/json");
+        xhr.setRequestHeader("Content-Type", "application/json");
+
+        xhr.onload = () => console.log(xhr.responseText);
+
+        let data = `{
+        "code": "${countryCode}",
+        "name": "${countryName}"
+        }`;
+
+        xhr.send(data);
+      });
   });
