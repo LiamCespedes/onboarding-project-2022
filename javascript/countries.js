@@ -20,14 +20,14 @@ $(document).ready(function(){
     $.getJSON("https://xc-countries-api.herokuapp.com/api/countries/", function(data){
     console.log(data);
     $.each(data, function (key, entry) {
-        dropdown.append($('<option></option>').attr('id', entry.code).text(entry.name + ", " + entry.id));
-        countryDropdown.append($('<option></option>').attr('id', entry.id).text(entry.name + ", " + entry.id));
+        dropdown.append($('<option></option>').attr('id', entry.code).text(entry.name));
+        countryDropdown.append($('<option></option>').attr('id', entry.id).text(entry.name));
         })
     });
 
-    //if countryButton is clicked, get the currently selected country id, and get the corresponding country's states as a JSON
+    //if countries element (select) is changed, get the currently selected country id, and get the corresponding country's states as a JSON
     //after this, populate the dropdown list with the states
-    $('#countryButton').click(function(){
+    $('#countries').change(function(){
         stateDropdown.empty();
         let countryID = $('#countries option:selected').attr('id');
         console.log(countryID);
