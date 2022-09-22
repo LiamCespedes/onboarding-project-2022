@@ -46,25 +46,27 @@ $(document).ready(function(){
         var countryName = $('#cname').val();
         console.log(countryCode);
         console.log(countryName);
-        
 
-        let xhr = new XMLHttpRequest();
-        xhr.open("POST", "https://xc-countries-api.herokuapp.com/api/countries/");
+        let data = {
+            "code": countryCode,
+            "name": countryName
+            };
 
-        xhr.setRequestHeader("Accept", "application/json");
-        xhr.setRequestHeader("Content-Type", "application/json");
-
-        xhr.onload = () => console.log(xhr.responseText);
-
-        let data = `{
-        "code": "${countryCode}",
-        "name": "${countryName}"
-        }`;
-
-        xhr.send(data);
-
-        //refresh page
-        //location.reload();
+        fetch('https://xc-countries-api.herokuapp.com/api/countries/', {
+        method: 'POST', // or 'PUT'
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            console.log('Success:', data);
+            location.reload();
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
       });
 
       //add state functionality
@@ -76,24 +78,28 @@ $(document).ready(function(){
         var countryId = $('#country_id option:selected').attr('id');
         console.log(countryId);
 
-        let xhr = new XMLHttpRequest();
-        xhr.open("POST", "https://xc-countries-api.herokuapp.com/api/states/");
+        let data = {
+            "code": stateCode,
+            "name": stateName,
+            "countryId": countryId
+            };
 
-        xhr.setRequestHeader("Accept", "application/json");
-        xhr.setRequestHeader("Content-Type", "application/json");
-
-        xhr.onload = () => console.log(xhr.responseText);
-
-        let data = `{
-        "code": "${stateCode}",
-        "name": "${stateName}",
-        "countryId": "${countryId}"
-        }`;
-
-        xhr.send(data);
-
-        //refresh page
-        //location.reload();
+        fetch('https://xc-countries-api.herokuapp.com/api/states/', {
+        method: 'POST', // or 'PUT'
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            console.log('Success:', data);
+            location.reload();
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
 
       })
+
   });
