@@ -62,6 +62,9 @@ $(document).ready(function(){
         }`;
 
         xhr.send(data);
+
+        //refresh page
+        //location.reload();
       });
 
       //add state functionality
@@ -88,5 +91,9 @@ $(document).ready(function(){
         }`;
 
         xhr.send(data);
+
+        //refresh page
+        //location.reload();
+
       })
   });
