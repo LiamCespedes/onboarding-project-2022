@@ -62,7 +62,8 @@ $(document).ready(function(){
         .then((response) => response.json())
         .then((data) => {
             console.log('Success:', data);
-            location.reload();
+            //location.reload();
+            loadLists();
         })
         .catch((error) => {
             console.error('Error:', error);
@@ -94,7 +95,8 @@ $(document).ready(function(){
         .then((response) => response.json())
         .then((data) => {
             console.log('Success:', data);
-            location.reload();
+            //location.reload();
+            loadLists();
         })
         .catch((error) => {
             console.error('Error:', error);
@@ -103,3 +105,31 @@ $(document).ready(function(){
       })
 
   });
+
+  function loadLists(){
+    let dropdown = $('#countries');
+    let stateDropdown = $('#states');
+    let countryDropdown = $('#country_id')
+
+    dropdown.empty();
+    stateDropdown.empty();
+    countryDropdown.empty();
+    
+    dropdown.append('<option selected="true" disabled>Choose Country</option>');
+    dropdown.prop('selectedIndex', 0);
+
+    stateDropdown.append('<option selected="true" disabled>Choose State</option>');
+    stateDropdown.prop('selectedIndex', 0);
+
+    countryDropdown.append('<option selected="true" disabled>Choose Country</option>');
+    countryDropdown.prop('selectedIndex', 0);
+
+
+    $.getJSON("https://xc-countries-api.herokuapp.com/api/countries/", function(data){
+    console.log(data);
+    $.each(data, function (key, entry) {
+        dropdown.append($('<option></option>').attr('id', entry.code).text(entry.name));
+        countryDropdown.append($('<option></option>').attr('id', entry.id).text(entry.name));
+        })
+    });
+  }
